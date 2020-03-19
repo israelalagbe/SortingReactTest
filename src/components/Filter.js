@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {PropTypes} from 'prop-types';
+import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 
 class Filter extends Component {
@@ -14,6 +14,11 @@ class Filter extends Component {
         </div>
         );
     }
+}
+
+Filter.propTypes={
+    sortByAge: PropTypes.func,
+    sortByName: PropTypes.func
 }
 
 export default Filter;
