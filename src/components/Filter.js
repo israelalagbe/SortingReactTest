@@ -5,11 +5,13 @@ import Checkbox from '@material-ui/core/Checkbox';
 class Filter extends Component {
 
     render() {
+        const {sortByDOB,sortByName} = this.props;
+        
         return (
         <div className="checkboxes">
-            <Checkbox/>
+            <Checkbox onChange={({target})=>target.checked && sortByName()  }/>
             <label>Name</label>
-            <Checkbox/>
+            <Checkbox onChange={({target})=>target.checked && sortByDOB()  }/>
             <label>Age</label>
         </div>
         );
@@ -17,7 +19,7 @@ class Filter extends Component {
 }
 
 Filter.propTypes={
-    sortByAge: PropTypes.func,
+    sortByDOB: PropTypes.func,
     sortByName: PropTypes.func
 }
 

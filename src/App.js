@@ -44,9 +44,9 @@ class App extends Component {
       people: sortedPeople
     })
   }
-  sortByAge =() => {
+  sortByDOB =() => {
     const people = this.state.people;
-    const sortedPeople = people.sort((person1, person2) => person1.age.localeCompare(person2.age))
+    const sortedPeople = people.sort((person1, person2) => person1.dob.localeCompare(person2.dob))
     this.setState({
       people: sortedPeople
     })
@@ -57,7 +57,7 @@ class App extends Component {
     return (
       <div className="container-fluid">
         <center><h1>Birthday Records</h1></center>
-        <Filter sortAge={this.sortByAge} sortName={this.sortByName}></Filter>
+        <Filter sortByDOB={this.sortByDOB} sortByName={this.sortByName}></Filter>
         <RecordTable people={people} ></RecordTable>
       </div>
     );
