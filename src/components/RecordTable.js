@@ -15,9 +15,8 @@ const RecordTableRow = ({person}) => (
 );
 
 class RecordTable extends Component {
-    constructor() {
-        super();
-        this.people = [
+    state={
+        people: [
             {
                 name: "Veronica Mize",
                 dob: "11/29/2011"
@@ -43,10 +42,30 @@ class RecordTable extends Component {
                 name: "Deborah T. Decker",
                 dob: "10/31/1999"
             }
-        ];
+        ]
     }
-
+    constructor() {
+        super();
+    }
+    componentWillMount(){
+        this.sortName()
+    }
+    sortName(){
+        const people = this.state.people;
+        const sortedPeople = people.sort((person1, person2)=>person1.name.localeCompare(person2.name))
+        this.setState({
+            people: sortedPeople
+        })
+    }
+    sortAge(){
+        const people = this.state.people;
+        const sortedPeople = people.sort((person1, person2)=>person1.age.localeCompare(person2.age))
+        this.setState({
+            people: sortedPeople
+        })
+    }
     render() {
+        const people = this.state.people;
         return (
             <Paper className="width">
                 <Table>
@@ -57,7 +76,7 @@ class RecordTable extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.people.map((person) => <RecordTableRow person={person} />)}
+                        {people.map((person, index) => <RecordTableRow key={index} person={person} />)}
 
                     </TableBody>
                 </Table>
