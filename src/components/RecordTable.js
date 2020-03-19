@@ -1,11 +1,18 @@
-import React, {Component} from 'react';
-import {PropTypes} from 'prop-types';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
+const RecordTableRow = ({person}) => (
+    <TableRow>
+        <TableCell>{person.name}</TableCell>
+        <TableCell>{person.dob}</TableCell>
+    </TableRow>
+);
 
 class RecordTable extends Component {
     constructor() {
@@ -50,10 +57,8 @@ class RecordTable extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                                <TableRow>
-                                    <TableCell>Insert Name</TableCell>
-                                    <TableCell>Insert DOB</TableCell>
-                                </TableRow>
+                        {this.people.map((person) => <RecordTableRow person={person} />)}
+
                     </TableBody>
                 </Table>
             </Paper>
