@@ -8,6 +8,7 @@ import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { mount, shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
+import { Checkbox } from '@material-ui/core';
 
 configure({ adapter: new Adapter() });
 
@@ -24,7 +25,12 @@ describe('BirthdayRecords <App/>', () => {
 
   it('check filter by age', () => {
     const wrapper = mount(<App />);
-    wrapper.find(Filter).instance().onChange('age');
+    const age = wrapper.find(Checkbox).last().find("input");
+    
+    age.simulate('change',{ target: { value: true, checked: true }});
+    // console.log("age field is: ",age.getDOMNode().name)
+    // console.log(age.getDOMNode().checked)
+    // console.log(wrapper.find(Filter).instance());
     expect(wrapper.find(RecordTable).text()).toEqual('NameDate of BirthAlexander Alfred02/09/1891Janice Shroyer12/01/1982Peter Parker01/16/1992Cecilia Olsson09/16/1992Deborah T. Decker10/31/1999Jimmy Shergil12/12/2001Veronica Mize11/29/2011Ralph White11/30/2011');
   });
 

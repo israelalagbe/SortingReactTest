@@ -37,16 +37,23 @@ class App extends Component {
     this.sortByName()
   }
 
-  sortByName = () => {
+  sortByName = (alreadySorted) => {
+    console.warn("Called sort by name")
     const people = this.state.people;
     const sortedPeople = people.sort((person1, person2) => person1.name.localeCompare(person2.name))
     this.setState({
       people: sortedPeople
     })
   }
-  sortByDOB =() => {
+  sortByAge =() => {
+    console.warn("Called sort by age")
+    const pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
     const people = this.state.people;
-    const sortedPeople = people.sort((person1, person2) => person1.dob.localeCompare(person2.dob))
+    const sortedPeople = people.sort((person1, person2) =>{
+      const date1 = new Date(person1.dob.replace(pattern,'$3-$2-$1'));
+      const date2 = new Date(person2.dob.replace(pattern,'$3-$2-$1'));
+      return date1-date2;
+    });
     this.setState({
       people: sortedPeople
     })
@@ -57,7 +64,7 @@ class App extends Component {
     return (
       <div className="container-fluid">
         <center><h1>Birthday Records</h1></center>
-        <Filter sortByDOB={this.sortByDOB} sortByName={this.sortByName}></Filter>
+        <Filter sortByAge={this.sortByAge} sortByName={this.sortByName}></Filter>
         <RecordTable people={people} ></RecordTable>
       </div>
     );

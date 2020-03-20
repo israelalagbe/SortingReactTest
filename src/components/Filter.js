@@ -5,21 +5,21 @@ import Checkbox from '@material-ui/core/Checkbox';
 class Filter extends Component {
 
     render() {
-        const {sortByDOB,sortByName} = this.props;
+        const {sortByAge,sortByName} = this.props;
         
         return (
         <div className="checkboxes">
-            <Checkbox onChange={({target})=>target.checked && sortByName()  }/>
+            <Checkbox ref="name" name='name' onChange={({target})=>target.checked && sortByName()  }/>
             <label>Name</label>
-            <Checkbox onChange={({target})=>target.checked && sortByDOB()  }/>
-            <label>Age</label>
+            <Checkbox ref="age" name='age' onChange={({target})=>target.checked && sortByAge()  }/>
+            <label>Date of Birth</label>
         </div>
         );
     }
 }
 
 Filter.propTypes={
-    sortByDOB: PropTypes.func,
+    sortByAge: PropTypes.func,
     sortByName: PropTypes.func
 }
 
