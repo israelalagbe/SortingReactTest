@@ -37,7 +37,7 @@ class App extends Component {
     this.sortByName()
   }
 
-  sortByName = (alreadySorted) => {
+  sortByName = () => {
     const people = this.state.people;
     const sortedPeople = people.sort((person1, person2) => person1.name.localeCompare(person2.name))
     this.setState({
