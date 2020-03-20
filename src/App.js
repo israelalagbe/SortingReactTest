@@ -38,7 +38,6 @@ class App extends Component {
   }
 
   sortByName = (alreadySorted) => {
-    console.warn("Called sort by name")
     const people = this.state.people;
     const sortedPeople = people.sort((person1, person2) => person1.name.localeCompare(person2.name))
     this.setState({
@@ -46,7 +45,6 @@ class App extends Component {
     })
   }
   sortByAge =() => {
-    console.warn("Called sort by age")
     const pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
     const people = this.state.people;
     const sortedPeople = people.sort((person1, person2) =>{
